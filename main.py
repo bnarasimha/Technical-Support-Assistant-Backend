@@ -39,7 +39,7 @@ class ImageDescriptionRequest(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to PicChatter!"}
+    return {"message": "Welcome to Technical Support Assistant!"}
 
 @app.post("/get_query_response")
 def get_query_response(request: QueryRequest):
