@@ -9,21 +9,14 @@ from pydantic import BaseModel
 
 load_dotenv()
 
-
 app = FastAPI()
 
-# Define the origins that are allowed to make requests
-origins = [
-    "https://tech-support-assistant-m83ze.ondigitalocean.app/",  # React frontend
-]
-
-# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # List of allowed origins
-    allow_credentials=True,  # Allow cookies and credentials
-    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
-    allow_headers=["*"],  # Allow all headers
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Define the request body model
