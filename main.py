@@ -33,6 +33,23 @@ class ImageDescriptionRequest(BaseModel):
 def read_root():
     return {"message": "Welcome to Technical Support Assistant!"}
 
+@app.post("/get_general_response")
+def get_general_response(request: QueryRequest):
+    client = OpenAI(
+        base_url = os.getenv("GENAI_PLATFORM_API_URL"),
+        api_key = os.getenv("GENAI_PLATFORM_API_KEY"),
+    )
+    
+    query = request.query
+
+    prompt = query
+    response = client.chat.completions.create(
+        model = "n/a",
+        messages = [{"role": "user", "content": prompt}]
+    )
+
+    return {"response": response.choices[0].message.content}
+
 @app.post("/get_query_response")
 def get_query_response(request: QueryRequest):
     client = OpenAI(
